@@ -7,10 +7,13 @@ import (
 	"net/http"
 )
 
+type payload struct {
+}
+
 func main() {
 	http.HandleFunc("/countapi", receiveJSONHandler)
 	fmt.Println("Server is running on port 8080...")
-	log.Fatal(http.ListenAndServe(":8080", nil))
+	log.Fatal(http.ListenAndServe(":3000", nil))
 }
 
 func receiveJSONHandler(w http.ResponseWriter, r *http.Request) {
