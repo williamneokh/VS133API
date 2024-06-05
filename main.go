@@ -12,7 +12,7 @@ type payload struct {
 
 func main() {
 	http.HandleFunc("/countapi", receiveJSONHandler)
-	fmt.Println("Server is running on port 8080...")
+	fmt.Println("Server is running on port 3000...")
 	log.Fatal(http.ListenAndServe(":3000", nil))
 }
 
