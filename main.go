@@ -30,6 +30,9 @@ func receiveJSONHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	fmt.Println(result)
-	fmt.Fprintf(w, "%v", result)
+	jsonString, _ := json.Marshal(result)
+
+	log.Println(string(jsonString))
+
+	fmt.Fprintf(w, "%v", string(jsonString))
 }
