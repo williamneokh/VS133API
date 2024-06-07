@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Display JSON Data</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+        }
+
+        .container {
+            width: 600px;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .title {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .box {
+            margin-bottom: 20px;
+            padding: 60px;
+            border-radius: 10px;
+            color: #fff;
+        }
+
+        .box.green {
+            background-color: #4CAF50;
+        }
+
+        .box.orange {
+            background-color: #FFA500;
+        }
+
+        .number {
+            font-size: 100px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1 class="title">VS133 POC TEST</h1>
+    <div class="box green">
+        <h2>Total In</h2>
+        <div id="totalIn" class="number"></div>
+    </div>
+    <div class="box orange">
+        <h2>Total Out</h2>
+        <div id="totalOut" class="number"></div>
+    </div>
+</div>
+
+<script>
+    function fetchData() {
+        fetch('/data')
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('totalIn').innerText = data.line_1_total_in;
+                document.getElementById('totalOut').innerText = data.line_1_total_out;
+            })
+            .catch(error => {
+                console.error('Error fetching data:', error);
+            });
+    }
+
+    // Fetch data on page load
+    fetchData();
+    // Refresh data every 5 seconds
+    setInterval(fetchData, 2000);
+</script>
+</body>
+</html>
