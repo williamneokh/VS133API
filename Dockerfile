@@ -1,4 +1,9 @@
 FROM golang:1.22
+RUN apt-get update -y
+RUN apt-get install -y tzdata
+
+# timezone env with default
+ENV TZ=Asia/Singapore
 
 WORKDIR /app
 
